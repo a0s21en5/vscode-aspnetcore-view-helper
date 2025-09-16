@@ -1,0 +1,33 @@
+{{#if model}}@model {{model}}
+
+{{/if}}@{
+{{#if layoutPage}}
+    Layout = "{{layoutPage}}";
+{{/if}}
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>{{modelName}}</h4>
+    <hr />
+    <dl class="row">
+        {{#each properties}}
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.{{this}})
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.{{this}})
+        </dd>
+        {{/each}}
+    </dl>
+</div>
+<div>
+    {{#if primaryKeyProperty}}
+    @Html.ActionLink("Edit", "Edit", new { id = Model.{{primaryKeyProperty}} }) |
+    {{else}}
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    {{/if}}
+    <a asp-action="Index">Back to List</a>
+</div>

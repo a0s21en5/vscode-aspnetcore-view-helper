@@ -1,0 +1,108 @@
+{
+  "name": "aspnetcore-view-helper",
+  "displayName": "ASP.NET Core View Helper",
+  "description": "A VS Code extension to generate ASP.NET Core MVC Views from controllers with templates and scaffolding.",
+  "version": "0.0.1",
+  "publisher": "a0s21en5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a0s21en5/aspnetcore-view-helper.git"
+  },
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:csharp",
+    "workspaceContains:**/*.csproj"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aspnetcore-view-helper.generateView",
+        "title": "Generate View",
+        "category": "ASP.NET Core"
+      },
+      {
+        "command": "aspnetcore-view-helper.scaffoldCRUD",
+        "title": "Scaffold CRUD Views",
+        "category": "ASP.NET Core"
+      },
+      {
+        "command": "aspnetcore-view-helper.generateDefaultTemplates",
+        "title": "Generate Default MVC Templates",
+        "category": "ASP.NET Core"
+      },
+      {
+        "command": "aspnetcore-view-helper.goToModelDefinition",
+        "title": "Go to Model Definition",
+        "category": "ASP.NET Core"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "aspnetcore-view-helper.generateView",
+          "when": "resourceExtname == .cs && editorTextFocus",
+          "group": "aspnetcore@1"
+        },
+        {
+          "command": "aspnetcore-view-helper.goToModelDefinition",
+          "when": "resourceExtname == .cshtml && editorTextFocus",
+          "group": "aspnetcore@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "aspnetcore-view-helper.scaffoldCRUD",
+          "when": "explorerResourceIsFolder",
+          "group": "aspnetcore@1"
+        },
+        {
+          "command": "aspnetcore-view-helper.generateDefaultTemplates",
+          "when": "explorerResourceIsFolder",
+          "group": "aspnetcore@2"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "razor",
+        "path": "./snippets/razor.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.104.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/handlebars": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "eslint": "^9.34.0",
+    "typescript": "^5.9.2",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}
