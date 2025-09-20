@@ -1,138 +1,150 @@
 # ASP.NET Core View Helper
 
-A Visual Studio Code extension that helps developers easily create and manage ASP.NET Core MVC views, similar to Visual Studio's built-in functionality.
+A Visual Studio Code extension that helps developers easily create and manage ASP.NET Core MVC views with intelligent model-based generation.
 
-## Features
+## ✨ Key Features
 
-### 🎯 Right-click Controller Method → Generate View
-- **Smart Detection**: Automatically detects controller and action names from your cursor position
-- **Template Selection**: Choose from Empty, Index, Create, Edit, Delete, or Details templates
-- **Model Integration**: Specify @model type and layout usage
-- **Auto-placement**: Generates .cshtml files in the correct Views/{Controller} folder
+### 🎯 Smart View Generation
+- **Automatic Model Property Detection**: Parses C# model files to extract actual properties, types, and attributes
+- **Intelligent Input Types**: Generates appropriate HTML5 input types based on property types and data annotations
+- **Primary Key Detection**: Automatically identifies and handles primary key properties
+- **Right-click Integration**: Generate views directly from controller methods
 
-### 🔧 CRUD View Scaffolding
-- **Bulk Generation**: Create all CRUD views (Index, Create, Edit, Details, Delete) at once
-- **Model-based**: Generate views based on your model type
-- **Consistent Structure**: Uses standardized templates for consistent UI
+### 🔧 CRUD Scaffolding
+- **Complete CRUD Operations**: Generate Index, Create, Edit, Details, and Delete views at once
+- **Model-based Forms**: Creates forms with proper input types and validation
+- **Bootstrap Integration**: Uses Bootstrap CSS classes for responsive design
 
-### 📁 Default MVC Templates
-- **Quick Setup**: Generate essential MVC files with one command:
-  - `_ViewStart.cshtml`
-  - `_ViewImports.cshtml` 
-  - `_Layout.cshtml`
-  - `Shared/Error.cshtml`
-- **Project-aware**: Automatically uses your project name in templates
+### 📁 Project Structure Aware
+- **Smart Project Detection**: Automatically finds your .NET project root
+- **Correct View Placement**: Creates views in the existing project's Views folder
+- **Multi-level Support**: Works with both workspace-root and nested project structures
 
-### ✨ Razor Snippets
-Comprehensive snippets for common Razor syntax:
-- `@model` - Model directive
-- `@inject` - Dependency injection
-- `@Html.EditorFor` - Form editors
-- `foreach` - Razor loops
-- `if`/`ifelse` - Conditional rendering
-- `form` - Tag helper forms
-- `section` - View sections
-- And many more!
+### ✂️ Razor Snippets
+Comprehensive snippets for common Razor syntax: `@model`, `@foreach`, `@if`, form helpers, and more.
 
-### 🔍 Navigation Helpers
-- **Go to Model Definition**: Right-click on `@model` directive to jump to model class
-- **Smart Search**: Automatically finds and opens the corresponding model file
-
-## Usage
+## � Quick Start
 
 ### Generate View from Controller
 1. Open a C# controller file
-2. Position cursor on or near an action method
-3. Right-click and select "Generate View"
-4. Choose template type and model options
-5. The view will be created in `Views/{ControllerName}/{ActionName}.cshtml`
+2. Position cursor on an action method
+3. Right-click → "Generate View"
+4. Select template and model options
+5. View is created with actual model properties
 
-### Scaffold CRUD Views
-1. Right-click on any folder in Explorer
+### Scaffold Complete CRUD
+1. Right-click on project folder
 2. Select "Scaffold CRUD Views"
 3. Enter model type (e.g., `MyApp.Models.Product`)
-4. Enter controller name
-5. All CRUD views will be generated
+4. All CRUD views are generated with proper forms and navigation
 
-### Generate Default Templates
-1. Right-click on project folder in Explorer
+### Setup Default MVC Structure
+1. Right-click on project root
 2. Select "Generate Default MVC Templates"
-3. Essential MVC files will be created in Views folder
+3. Creates `_ViewStart.cshtml`, `_ViewImports.cshtml`, `_Layout.cshtml`, and `Error.cshtml`
 
-### Using Snippets
-1. Open any `.cshtml` file
-2. Type snippet prefix (e.g., `@model`, `foreach`, `form`)
-3. Press Tab to expand snippet
-4. Navigate through placeholders with Tab
+## 🔍 Model Property Detection
 
-### Navigation
-1. Open a `.cshtml` file with `@model` directive
-2. Position cursor on model type
-3. Right-click and select "Go to Model Definition"
-4. Model file will open at class declaration
+The extension intelligently parses your C# models to generate accurate views:
 
-## Available Templates
+```csharp
+public class Product
+{
+    [Key]
+    public int Id { get; set; }
+    
+    [Required]
+    [StringLength(100)]
+    public string Name { get; set; }
+    
+    [EmailAddress]
+    public string ContactEmail { get; set; }
+    
+    [Range(0.01, 9999.99)]
+    public decimal Price { get; set; }
+    
+    public DateTime CreatedDate { get; set; }
+    
+    public bool IsActive { get; set; }
+}
+```
 
-### View Templates
-- **Empty**: Basic view with optional model and layout
-- **Index**: List view with table layout for displaying collections
-- **Create**: Form for creating new entities
-- **Edit**: Form for editing existing entities  
-- **Details**: Read-only view for displaying entity details
-- **Delete**: Confirmation view for delete operations
+**Generated Create Form**:
 
-### Default Templates
-- **_ViewStart.cshtml**: Sets default layout for all views
-- **_ViewImports.cshtml**: Global using statements and tag helpers
-- **_Layout.cshtml**: Bootstrap-based layout with navigation
-- **Error.cshtml**: Error page with development/production modes
+- `Id` → Hidden field (primary key)
+- `Name` → Text input with validation
+- `ContactEmail` → Email input
+- `Price` → Number input
+- `CreatedDate` → DateTime-local input
+- `IsActive` → Checkbox
 
-## Requirements
+## 📋 Available Commands
 
-- Visual Studio Code 1.104.0 or higher
+| Command | Description | Context |
+|---------|-------------|---------|
+| Generate View | Create single view from controller method | C# controller files |
+| Scaffold CRUD Views | Generate all CRUD views for a model | Explorer context |
+| Generate Default MVC Templates | Create essential MVC structure | Explorer context |
+| Go to Model Definition | Navigate to model class from view | Razor view files |
+
+## 🛠️ Requirements
+
+- Visual Studio Code 1.104.0+
 - ASP.NET Core project (detected by .csproj files)
-- C# extension (recommended for full functionality)
+- C# extension (recommended)
 
-## Extension Commands
+## 🏗️ Architecture
 
-- `ASP.NET Core: Generate View` - Generate single view from controller
-- `ASP.NET Core: Scaffold CRUD Views` - Generate all CRUD views
-- `ASP.NET Core: Generate Default MVC Templates` - Create essential MVC files
-- `ASP.NET Core: Go to Model Definition` - Navigate to model class
+The extension is built with a modular architecture:
 
-## Configuration
+```text
+src/
+├── extension.ts          # Main extension entry point
+├── types.ts             # TypeScript interfaces and types
+├── controllerUtils.ts   # Controller and action detection
+├── modelParser.ts       # C# model property parsing
+├── templateGenerator.ts # View template generation
+└── projectUtils.ts      # Project structure utilities
+```
+
+## 🧩 Template System
+
+Uses Handlebars.js templates with smart model property injection:
+
+- **Dynamic Property Lists**: Templates iterate over actual model properties
+- **Type-aware Inputs**: Different input types based on C# property types
+- **Attribute Recognition**: Supports data annotation attributes
+- **Primary Key Handling**: Special handling for ID properties
+
+## 📝 Development
+
+```bash
+# Install dependencies
+npm install
+
+# Compile TypeScript
+npm run compile
+
+# Watch for changes
+npm run watch
+
+# Package extension
+npm run package
+```
+
+## 🔧 Configuration
 
 The extension works out-of-the-box without configuration. It automatically:
-- Detects project structure
-- Creates appropriate folder hierarchy
-- Uses project name in templates
-- Follows ASP.NET Core conventions
 
-## Contributing
+- Detects .NET project structure
+- Finds existing Views folders
+- Uses project naming conventions
+- Follows ASP.NET Core best practices
 
-This extension is designed to improve ASP.NET Core development productivity in VS Code. 
-
-### Future Enhancements
-- EF Core integration for automatic scaffolding
-- Enhanced model property detection
-- Razor diagnostics and IntelliSense
-- Integration with dotnet CLI tools
-- Preview in browser functionality
-
-## License
+## 📄 License
 
 MIT License - see LICENSE file for details.
 
-## Release Notes
-
-### 0.0.1
-- Initial release
-- Basic view generation from controllers
-- CRUD scaffolding
-- Default MVC templates
-- Razor snippets
-- Model navigation
-
 ---
 
-**Enjoy building ASP.NET Core applications with enhanced productivity!**
+**Enhance your ASP.NET Core development with intelligent view generation!**
