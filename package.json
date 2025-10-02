@@ -1,0 +1,161 @@
+{
+  "name": "vscode-aspnetcore-view-helper",
+  "displayName": "ASP.NET Core View Helper",
+  "description": "Generate ASP.NET Core MVC Views from controllers with intelligent scaffolding.",
+  "version": "0.2.0",
+  "publisher": "a0s21en5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a0s21en5/vscode-aspnetcore-view-helper.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.104.0",
+    "node": ">=18.0.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "aspnetcore",
+    "mvc",
+    "razor",
+    "scaffolding",
+    "csharp"
+  ],
+  "activationEvents": [
+    "onLanguage:csharp",
+    "workspaceContains:**/*.csproj"
+  ],
+  "main": "./dist/extension.js",
+  "galleryBanner": {
+    "color": "#512BD4",
+    "theme": "dark"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-aspnetcore-view-helper.generateView",
+        "title": "Generate View",
+        "category": "ASP.NET Core",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "vscode-aspnetcore-view-helper.scaffoldCRUD",
+        "title": "Scaffold CRUD Views",
+        "category": "ASP.NET Core",
+        "icon": "$(multiple-windows)"
+      },
+      {
+        "command": "vscode-aspnetcore-view-helper.generateDefaultTemplates",
+        "title": "Generate Default MVC Templates",
+        "category": "ASP.NET Core",
+        "icon": "$(file-directory-create)"
+      },
+      {
+        "command": "vscode-aspnetcore-view-helper.goToModelDefinition",
+        "title": "Go to Model Definition",
+        "category": "ASP.NET Core",
+        "icon": "$(go-to-file)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vscode-aspnetcore-view-helper.generateView",
+          "when": "resourceExtname == .cs && editorTextFocus",
+          "group": "aspnetcore@1"
+        },
+        {
+          "command": "vscode-aspnetcore-view-helper.goToModelDefinition",
+          "when": "resourceExtname == .cshtml && editorTextFocus",
+          "group": "aspnetcore@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "vscode-aspnetcore-view-helper.scaffoldCRUD",
+          "when": "explorerResourceIsFolder",
+          "group": "aspnetcore@1"
+        },
+        {
+          "command": "vscode-aspnetcore-view-helper.generateDefaultTemplates",
+          "when": "explorerResourceIsFolder",
+          "group": "aspnetcore@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vscode-aspnetcore-view-helper.generateView",
+          "when": "resourceExtname == .cs"
+        },
+        {
+          "command": "vscode-aspnetcore-view-helper.scaffoldCRUD"
+        },
+        {
+          "command": "vscode-aspnetcore-view-helper.generateDefaultTemplates"
+        },
+        {
+          "command": "vscode-aspnetcore-view-helper.goToModelDefinition",
+          "when": "resourceExtname == .cshtml"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "razor",
+        "path": "./snippets/razor.json"
+      }
+    ],
+    "configuration": {
+      "title": "ASP.NET Core View Helper",
+      "properties": {
+        "aspnetcoreViewHelper.defaultTemplateDirectory": {
+          "type": "string",
+          "default": "Views",
+          "description": "Default directory for generated views"
+        },
+        "aspnetcoreViewHelper.useLayoutByDefault": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use layout page by default in generated views"
+        },
+        "aspnetcoreViewHelper.defaultLayoutName": {
+          "type": "string",
+          "default": "_Layout",
+          "description": "Default layout page name"
+        },
+        "aspnetcoreViewHelper.enableLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable detailed logging for debugging"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "package": "webpack --mode production",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run lint && npm run package"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "@types/vscode": "^1.104.0",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "eslint": "^9.34.0",
+    "rimraf": "^6.0.1",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}

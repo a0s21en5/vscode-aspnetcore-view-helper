@@ -1,0 +1,157 @@
+{
+    "Model directive": {
+        "prefix": "@model",
+        "body": [
+            "@model ${1:ModelType}"
+        ],
+        "description": "Add @model directive to specify the model type for the view"
+    },
+    "Inject directive": {
+        "prefix": "@inject",
+        "body": [
+            "@inject ${1:ServiceType} ${2:ServiceName}"
+        ],
+        "description": "Inject a service into the view"
+    },
+    "ViewData": {
+        "prefix": "viewdata",
+        "body": [
+            "ViewData[\"${1:Key}\"] = \"${2:Value}\";"
+        ],
+        "description": "Set ViewData value"
+    },
+    "DisplayFor": {
+        "prefix": "displayfor",
+        "body": [
+            "@Html.DisplayFor(model => model.${1:Property})"
+        ],
+        "description": "Display a model property"
+    },
+    "EditorFor": {
+        "prefix": "editorfor",
+        "body": [
+            "@Html.EditorFor(model => model.${1:Property}, new { htmlAttributes = new { @class = \"form-control\" } })"
+        ],
+        "description": "Create an editor for a model property"
+    },
+    "ValidationMessageFor": {
+        "prefix": "validationfor",
+        "body": [
+            "@Html.ValidationMessageFor(model => model.${1:Property}, \"\", new { @class = \"text-danger\" })"
+        ],
+        "description": "Display validation message for a property"
+    },
+    "ActionLink": {
+        "prefix": "actionlink",
+        "body": [
+            "@Html.ActionLink(\"${1:LinkText}\", \"${2:ActionName}\", \"${3:ControllerName}\")"
+        ],
+        "description": "Create an action link"
+    },
+    "BeginForm": {
+        "prefix": "beginform",
+        "body": [
+            "@using (Html.BeginForm(\"${1:ActionName}\", \"${2:ControllerName}\"))",
+            "{",
+            "    ${3:// Form content}",
+            "}"
+        ],
+        "description": "Create a form using Html.BeginForm"
+    },
+    "Foreach loop": {
+        "prefix": "foreach",
+        "body": [
+            "@foreach (var ${1:item} in Model)",
+            "{",
+            "    ${2:// Content}",
+            "}"
+        ],
+        "description": "Foreach loop in Razor syntax"
+    },
+    "If condition": {
+        "prefix": "if",
+        "body": [
+            "@if (${1:condition})",
+            "{",
+            "    ${2:// Content}",
+            "}"
+        ],
+        "description": "If condition in Razor syntax"
+    },
+    "If-else condition": {
+        "prefix": "ifelse",
+        "body": [
+            "@if (${1:condition})",
+            "{",
+            "    ${2:// If content}",
+            "}",
+            "else",
+            "{",
+            "    ${3:// Else content}",
+            "}"
+        ],
+        "description": "If-else condition in Razor syntax"
+    },
+    "Layout": {
+        "prefix": "layout",
+        "body": [
+            "@{",
+            "    Layout = \"${1:_Layout}\";",
+            "}"
+        ],
+        "description": "Set layout for the view"
+    },
+    "Section": {
+        "prefix": "section",
+        "body": [
+            "@section ${1:SectionName} {",
+            "    ${2:// Section content}",
+            "}"
+        ],
+        "description": "Define a section in the view"
+    },
+    "RenderSection": {
+        "prefix": "rendersection",
+        "body": [
+            "@RenderSection(\"${1:SectionName}\", required: ${2:false})"
+        ],
+        "description": "Render a section in layout"
+    },
+    "Partial": {
+        "prefix": "partial",
+        "body": [
+            "@await Html.RenderPartialAsync(\"${1:PartialViewName}\")"
+        ],
+        "description": "Render a partial view"
+    },
+    "Tag Helper Form": {
+        "prefix": "form",
+        "body": [
+            "<form asp-action=\"${1:ActionName}\" asp-controller=\"${2:ControllerName}\">",
+            "    ${3:// Form content}",
+            "</form>"
+        ],
+        "description": "Create a form using tag helpers"
+    },
+    "Tag Helper Input": {
+        "prefix": "input",
+        "body": [
+            "<input asp-for=\"${1:Property}\" class=\"form-control\" />"
+        ],
+        "description": "Create an input using tag helpers"
+    },
+    "Tag Helper Label": {
+        "prefix": "label",
+        "body": [
+            "<label asp-for=\"${1:Property}\" class=\"control-label\"></label>"
+        ],
+        "description": "Create a label using tag helpers"
+    },
+    "Validation Summary": {
+        "prefix": "validationsummary",
+        "body": [
+            "<div asp-validation-summary=\"${1:ModelOnly}\" class=\"text-danger\"></div>"
+        ],
+        "description": "Display validation summary"
+    }
+}

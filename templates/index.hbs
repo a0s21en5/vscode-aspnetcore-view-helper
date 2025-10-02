@@ -1,0 +1,52 @@
+{{#if model}}@model IEnumerable<{{model}}>
+
+{{/if}}@{
+{{#if layoutPage}}
+    Layout = "{{layoutPage}}";
+{{/if}}
+    ViewData["Title"] = "{{actionName}}";
+}
+
+<h1>{{actionName}}</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+{{#if model}}
+<table class="table">
+    <thead>
+        <tr>
+            {{#each properties}}
+            <th>
+                @Html.DisplayNameFor(model => model.{{name}})
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            {{#each properties}}
+            <td>
+                @Html.DisplayFor(modelItem => item.{{name}})
+            </td>
+            {{/each}}
+            <td>
+                {{#if ../primaryKeyProperty}}
+                @Html.ActionLink("Edit", "Edit", new { id = item.{{../primaryKeyProperty}} }) |
+                @Html.ActionLink("Details", "Details", new { id = item.{{../primaryKeyProperty}} }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.{{../primaryKeyProperty}} })
+                {{else}}
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                {{/if}}
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+{{else}}
+<p>No items to display. <a asp-action="Create">Create one now</a></p>
+{{/if}}
