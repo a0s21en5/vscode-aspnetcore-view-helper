@@ -14,7 +14,7 @@ export function createLogger(extensionName: string): Logger {
 
 	return {
 		debug(message: string, ...args: unknown[]): void {
-			const config = vscode.workspace.getConfiguration('aspnetcoreViewHelper');
+			const config = vscode.workspace.getConfiguration('vscode-aspnetcore-view-helper');
 			if (config.get<boolean>('enableLogging', false)) {
 				const formattedMessage = formatLogMessage('DEBUG', message, ...args);
 				outputChannel?.appendLine(formattedMessage);

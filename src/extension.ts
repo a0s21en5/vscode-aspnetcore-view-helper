@@ -18,10 +18,10 @@ let configurationWatcher: vscode.Disposable | undefined;
  */
 export function activate(context: vscode.ExtensionContext): void {
 	// Initialize logging
-	logger = createLogger('ASP.NET Core View Helper');
+	logger = createLogger('vscode-aspnetcore-view-helper');
 	errorHandler = createErrorHandler(logger);
 	
-	logger.info('ASP.NET Core View Helper extension is activating...');
+	logger.info('vscode-aspnetcore-view-helper extension is activating...');
 
 	try {
 		// Register Handlebars helpers
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext): void {
 			context.subscriptions.push(configurationWatcher);
 		}
 
-		logger.info('ASP.NET Core View Helper extension activated successfully');
+		logger.info('vscode-aspnetcore-view-helper extension activated successfully');
 	} catch (error) {
 		errorHandler.handleError(error as Error, 'Extension activation');
 	}
@@ -50,7 +50,7 @@ export function activate(context: vscode.ExtensionContext): void {
  * Extension deactivation cleanup
  */
 export function deactivate(): void {
-	logger?.info('ASP.NET Core View Helper extension is deactivating...');
+	logger?.info('vscode-aspnetcore-view-helper extension is deactivating...');
 	
 	// Clean up resources
 	modelCache.clear();

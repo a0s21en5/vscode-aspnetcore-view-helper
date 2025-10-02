@@ -1,6 +1,6 @@
-# ASP.NET Core View Helper
+# vscode-aspnetcore-view-helper
 
-A VS Code extension that generates Razor views from ASP.NET Core controllers with intelligent scaffolding.
+A Visual Studio Code extension that streamlines ASP.NET Core MVC development by providing intelligent view scaffolding and generation capabilities.
 
 ## Features
 
@@ -13,11 +13,13 @@ A VS Code extension that generates Razor views from ASP.NET Core controllers wit
 ## Quick Start
 
 ### Generate Single View
+
 1. Open a controller file (.cs)
 2. Right-click in an action method → "Generate View"
 3. Select template and configure options
 
 ### Scaffold CRUD Views  
+
 1. Right-click folder in Explorer → "Scaffold CRUD Views"
 2. Enter model type (e.g., `MyApp.Models.Product`)
 3. Enter controller name
@@ -33,10 +35,10 @@ A VS Code extension that generates Razor views from ASP.NET Core controllers wit
 
 ```json
 {
-  "aspnetcoreViewHelper.defaultTemplateDirectory": "Views",
-  "aspnetcoreViewHelper.useLayoutByDefault": true,
-  "aspnetcoreViewHelper.defaultLayoutName": "_Layout",
-  "aspnetcoreViewHelper.enableLogging": false
+  "vscode-aspnetcore-view-helper.defaultTemplateDirectory": "Views",
+  "vscode-aspnetcore-view-helper.useLayoutByDefault": true,
+  "vscode-aspnetcore-view-helper.defaultLayoutName": "_Layout",
+  "vscode-aspnetcore-view-helper.enableLogging": false
 }
 ```
 
@@ -55,14 +57,14 @@ MIT
 
 ## ⚙️ Configuration
 
-Access settings via `File → Preferences → Settings` and search for "ASP.NET Core View Helper":
+Access settings via `File → Preferences → Settings` and search for "vscode-aspnetcore-view-helper":
 
 ```json
 {
-  "aspnetcoreViewHelper.defaultTemplateDirectory": "Views",
-  "aspnetcoreViewHelper.useLayoutByDefault": true,
-  "aspnetcoreViewHelper.defaultLayoutName": "_Layout",
-  "aspnetcoreViewHelper.enableLogging": false
+  "vscode-aspnetcore-view-helper.defaultTemplateDirectory": "Views",
+  "vscode-aspnetcore-view-helper.useLayoutByDefault": true,
+  "vscode-aspnetcore-view-helper.defaultLayoutName": "_Layout",
+  "vscode-aspnetcore-view-helper.enableLogging": false
 }
 ```
 
@@ -78,6 +80,7 @@ Access settings via `File → Preferences → Settings` and search for "ASP.NET 
 ## 🎨 Supported Templates
 
 ### View Templates
+
 - **Empty**: Minimal view template
 - **Index**: List view for displaying multiple items
 - **Create**: Form for creating new items
@@ -86,6 +89,7 @@ Access settings via `File → Preferences → Settings` and search for "ASP.NET 
 - **Delete**: Confirmation view for deleting items
 
 ### Default MVC Templates
+
 - `_Layout.cshtml`: Main layout template
 - `_ViewStart.cshtml`: View start configuration
 - `_ViewImports.cshtml`: Global view imports
@@ -102,6 +106,7 @@ The extension automatically detects and parses C# model properties with support 
 - **Primary Keys**: Auto-detection of ID properties
 
 ### Supported Attributes
+
 - `[Required]`, `[Display]`, `[Description]`
 - `[StringLength]`, `[MaxLength]`, `[MinLength]`
 - `[EmailAddress]`, `[Phone]`, `[Url]`
@@ -110,11 +115,13 @@ The extension automatically detects and parses C# model properties with support 
 ## 🛠️ Development
 
 ### Prerequisites
+
 - Node.js 18+
 - VS Code 1.104.0+
 - TypeScript 5.9+
 
 ### Building from Source
+
 ```bash
 # Clone the repository
 git clone https://github.com/a0s21en5/vscode-aspnetcore-view-helper.git
@@ -131,6 +138,7 @@ npm run package:vsix
 ```
 
 ### Scripts
+
 ```bash
 npm run compile          # Development build
 npm run watch           # Watch mode
@@ -146,6 +154,7 @@ npm test               # Run tests
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ### Development Workflow
+
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
 3. Make your changes
@@ -175,14 +184,16 @@ A: Ensure your model files are in standard locations (`Models/`, `Entities/`, `D
 A: Verify the extension is installed correctly and templates exist in the extension folder.
 
 ### Debug Mode
+
 Enable detailed logging in settings:
+
 ```json
 {
-  "aspnetcoreViewHelper.enableLogging": true
+  "vscode-aspnetcore-view-helper.enableLogging": true
 }
 ```
 
-View logs: `View → Output → ASP.NET Core View Helper`
+View logs: `View → Output → vscode-aspnetcore-view-helper`
 
 ## 📄 License
 

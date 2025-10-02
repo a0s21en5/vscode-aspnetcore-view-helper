@@ -1,6 +1,6 @@
 {
   "name": "vscode-aspnetcore-view-helper",
-  "displayName": "ASP.NET Core View Helper",
+  "displayName": "vscode-aspnetcore-view-helper",
   "description": "Generate ASP.NET Core MVC Views from controllers with intelligent scaffolding.",
   "version": "0.2.0",
   "publisher": "a0s21en5",
@@ -109,24 +109,24 @@
       }
     ],
     "configuration": {
-      "title": "ASP.NET Core View Helper",
+      "title": "vscode-aspnetcore-view-helper",
       "properties": {
-        "aspnetcoreViewHelper.defaultTemplateDirectory": {
+        "vscode-aspnetcore-view-helper.defaultTemplateDirectory": {
           "type": "string",
           "default": "Views",
           "description": "Default directory for generated views"
         },
-        "aspnetcoreViewHelper.useLayoutByDefault": {
+        "vscode-aspnetcore-view-helper.useLayoutByDefault": {
           "type": "boolean",
           "default": true,
           "description": "Use layout page by default in generated views"
         },
-        "aspnetcoreViewHelper.defaultLayoutName": {
+        "vscode-aspnetcore-view-helper.defaultLayoutName": {
           "type": "string",
           "default": "_Layout",
           "description": "Default layout page name"
         },
-        "aspnetcoreViewHelper.enableLogging": {
+        "vscode-aspnetcore-view-helper.enableLogging": {
           "type": "boolean",
           "default": false,
           "description": "Enable detailed logging for debugging"
@@ -148,6 +148,7 @@
     "@types/vscode": "^1.104.0",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
     "@typescript-eslint/parser": "^8.42.0",
+    "@vscode/vsce": "^3.6.2",
     "eslint": "^9.34.0",
     "rimraf": "^6.0.1",
     "ts-loader": "^9.5.4",

@@ -5,7 +5,7 @@ import { ExtensionConfiguration } from './types';
  * Gets the current extension configuration
  */
 export function getConfiguration(): ExtensionConfiguration {
-	const config = vscode.workspace.getConfiguration('aspnetcoreViewHelper');
+	const config = vscode.workspace.getConfiguration('vscode-aspnetcore-view-helper');
 	
 	return {
 		defaultTemplateDirectory: config.get<string>('defaultTemplateDirectory', 'Views'),
@@ -20,7 +20,7 @@ export function getConfiguration(): ExtensionConfiguration {
  */
 export function onConfigurationChange(callback: (config: ExtensionConfiguration) => void): vscode.Disposable {
 	return vscode.workspace.onDidChangeConfiguration((e) => {
-		if (e.affectsConfiguration('aspnetcoreViewHelper')) {
+		if (e.affectsConfiguration('vscode-aspnetcore-view-helper')) {
 			callback(getConfiguration());
 		}
 	});
@@ -30,6 +30,6 @@ export function onConfigurationChange(callback: (config: ExtensionConfiguration)
  * Updates a configuration value
  */
 export async function updateConfiguration<T>(key: keyof ExtensionConfiguration, value: T, global = false): Promise<void> {
-	const config = vscode.workspace.getConfiguration('aspnetcoreViewHelper');
+	const config = vscode.workspace.getConfiguration('vscode-aspnetcore-view-helper');
 	await config.update(key, value, global);
 }
