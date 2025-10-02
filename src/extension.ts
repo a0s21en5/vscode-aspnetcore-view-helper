@@ -36,10 +36,10 @@ function registerHandlebarsHelpers() {
  */
 function registerCommands(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-		vscode.commands.registerCommand('aspnetcore-view-helper.generateView', generateView),
-		vscode.commands.registerCommand('aspnetcore-view-helper.scaffoldCRUD', scaffoldCRUD),
-		vscode.commands.registerCommand('aspnetcore-view-helper.generateDefaultTemplates', generateDefaultTemplates),
-		vscode.commands.registerCommand('aspnetcore-view-helper.goToModelDefinition', goToModelDefinition)
+		vscode.commands.registerCommand('vscode-aspnetcore-view-helper.generateView', generateView),
+		vscode.commands.registerCommand('vscode-aspnetcore-view-helper.scaffoldCRUD', scaffoldCRUD),
+		vscode.commands.registerCommand('vscode-aspnetcore-view-helper.generateDefaultTemplates', generateDefaultTemplates),
+		vscode.commands.registerCommand('vscode-aspnetcore-view-helper.goToModelDefinition', goToModelDefinition)
 	);
 }
 

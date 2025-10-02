@@ -1,12 +1,12 @@
 {
-  "name": "aspnetcore-view-helper",
+  "name": "vscode-aspnetcore-view-helper",
   "displayName": "ASP.NET Core View Helper",
   "description": "A VS Code extension to generate ASP.NET Core MVC Views from controllers with templates and scaffolding.",
   "version": "0.1.0",
   "publisher": "a0s21en5",
   "repository": {
     "type": "git",
-    "url": "https://github.com/a0s21en5/aspnetcore-view-helper.git"
+    "url": "https://github.com/a0s21en5/vscode-aspnetcore-view-helper.git"
   },
   "engines": {
     "vscode": "^1.104.0"
@@ -23,22 +23,22 @@
   "contributes": {
     "commands": [
       {
-        "command": "aspnetcore-view-helper.generateView",
+        "command": "vscode-aspnetcore-view-helper.generateView",
         "title": "Generate View",
         "category": "ASP.NET Core"
       },
       {
-        "command": "aspnetcore-view-helper.scaffoldCRUD",
+        "command": "vscode-aspnetcore-view-helper.scaffoldCRUD",
         "title": "Scaffold CRUD Views",
         "category": "ASP.NET Core"
       },
       {
-        "command": "aspnetcore-view-helper.generateDefaultTemplates",
+        "command": "vscode-aspnetcore-view-helper.generateDefaultTemplates",
         "title": "Generate Default MVC Templates",
         "category": "ASP.NET Core"
       },
       {
-        "command": "aspnetcore-view-helper.goToModelDefinition",
+        "command": "vscode-aspnetcore-view-helper.goToModelDefinition",
         "title": "Go to Model Definition",
         "category": "ASP.NET Core"
       }
@@ -46,24 +46,24 @@
     "menus": {
       "editor/context": [
         {
-          "command": "aspnetcore-view-helper.generateView",
+          "command": "vscode-aspnetcore-view-helper.generateView",
           "when": "resourceExtname == .cs && editorTextFocus",
           "group": "aspnetcore@1"
         },
         {
-          "command": "aspnetcore-view-helper.goToModelDefinition",
+          "command": "vscode-aspnetcore-view-helper.goToModelDefinition",
           "when": "resourceExtname == .cshtml && editorTextFocus",
           "group": "aspnetcore@2"
         }
       ],
       "explorer/context": [
         {
-          "command": "aspnetcore-view-helper.scaffoldCRUD",
+          "command": "vscode-aspnetcore-view-helper.scaffoldCRUD",
           "when": "explorerResourceIsFolder",
           "group": "aspnetcore@1"
         },
         {
-          "command": "aspnetcore-view-helper.generateDefaultTemplates",
+          "command": "vscode-aspnetcore-view-helper.generateDefaultTemplates",
           "when": "explorerResourceIsFolder",
           "group": "aspnetcore@2"
         }
